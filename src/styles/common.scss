@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--el-border-color);
+  &:hover {
+    background: var(--el-text-color-placeholder);
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

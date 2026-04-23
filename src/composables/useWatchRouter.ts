@@ -22,7 +22,7 @@ export const useWatchRouter = () => {
         })
       }
     },
-    { immediate: true },
+    { immediate: true }
   )
   const onDeleteRouteHistory = (path: string) => {
     const idx = routeHistory.value.findIndex((item) => item.path === path)

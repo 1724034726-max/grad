@@ -32,21 +32,20 @@
   </div>
 </template>
 <script setup lang="ts">
-import TipCard from './components/tip-card.vue'
-import LearningTrends from './components/learning-trends.vue'
-import MistakesClassify from './components/mistakes-classify.vue'
-import WeakPointsBar from './components/weak-points-bar.vue'
-import { CircleCheck, Clock, TrendCharts } from '@element-plus/icons-vue'
+  import TipCard from './components/tip-card.vue'
+  import LearningTrends from './components/learning-trends.vue'
+  import MistakesClassify from './components/mistakes-classify.vue'
+  import WeakPointsBar from './components/weak-points-bar.vue'
+  import { CircleCheck, Clock, TrendCharts } from '@element-plus/icons-vue'
 </script>
 <style scoped lang="scss">
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.section-last {
-  margin-top: 5px;
-}
-
+  .section-last {
+    margin-top: 5px;
+  }
 </style>

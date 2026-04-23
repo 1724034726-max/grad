@@ -1,0 +1,17 @@
+dist
+node_modules
+coverage
+*.min.*
+*.d.ts
+*.log
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+.vscode
+.idea
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp

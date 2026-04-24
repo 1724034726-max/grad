@@ -66,7 +66,7 @@
           {
             type: 'bar',
             data: xData,
-            barWidth: 18,
+            barWidth: 22,
             barCategoryGap: '55%',
             showBackground: true,
             backgroundStyle: {
@@ -75,8 +75,9 @@
             },
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                { offset: 0, color: cssVar('--el-color-primary-light-5', primary) },
-                { offset: 1, color: primary },
+                { offset: 0, color: cssVar('--el-color-primary-light-9', primary) },
+                { offset: 0.55, color: primary },
+                { offset: 1, color: cssVar('--el-color-primary-light-3', primary) },
               ]),
               borderRadius: 6,
             },

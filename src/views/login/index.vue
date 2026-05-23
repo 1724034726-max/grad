@@ -67,7 +67,11 @@
         })
         localStorage.setItem('token', access_token)
         ElMessage.success('登录成功')
-        await router.push('/dashboard')
+        const redirect =
+          typeof router.currentRoute.value.query.redirect === 'string'
+            ? router.currentRoute.value.query.redirect
+            : '/dashboard'
+        await router.replace(redirect)
       } finally {
         loading.value = false
       }

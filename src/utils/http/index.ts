@@ -1,9 +1,13 @@
+import router from '@/router'
 import axios, {
   type AxiosInstance,
   type AxiosRequestConfig,
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios'
+import { ElMessage } from 'element-plus'
+
+type ApiBody = { code?: number; msg?: string }
 
 const baseURL = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? ''
 
@@ -27,9 +31,33 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   return config
 })
 
+function handleUnauthorized(msg?: string) {
+  localStorage.removeItem('token')
+  if (router.currentRoute.value.path !== '/login') {
+    ElMessage.warning(msg || '登录已过期，请重新登录')
+    router.replace({
+      path: '/login',
+      query: { redirect: router.currentRoute.value.fullPath },
+    })
+  }
+}
+
 http.interceptors.response.use(
-  (response: AxiosResponse) => response,
-  (error: unknown) => Promise.reject(error)
+  (response: AxiosResponse) => {
+    const data = response.data as ApiBody | undefined
+    if (data && typeof data === 'object' && data.code === 401) {
+      handleUnauthorized(data.msg)
+      return Promise.reject(new Error(data.msg || '未登录'))
+    }
+    return response
+  },
+  (error: unknown) => {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      const data = error.response.data as ApiBody | undefined
+      handleUnauthorized(data?.msg)
+    }
+    return Promise.reject(error)
+  }
 )
 
 async function unwrap<T>(p: Promise<AxiosResponse<T>>): Promise<T> {

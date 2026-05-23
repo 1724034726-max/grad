@@ -13,9 +13,15 @@
   import { useRoute } from 'vue-router'
   import { computed } from 'vue'
   const router = useRouter()
-  const menuList = computed(() => router.options.routes[0]?.children)
+  const menuList = computed(
+    () => router.options.routes[0]?.children?.filter((r) => !r.meta?.hidden) ?? []
+  )
   const route = useRoute()
-  const activeIndex = computed(() => route.path)
+  const activeIndex = computed(() => {
+    const p = route.path
+    if (p.startsWith('/correction-notebook')) return '/correction-notebook'
+    return p
+  })
 </script>
 <style scoped lang="scss">
   .el-menu {

@@ -24,6 +24,14 @@ const routes = [
         },
       },
       {
+        path: '/correction-notebook/add',
+        component: () => import('../views/correction-notebook/add.vue'),
+        meta: {
+          title: '新增错题',
+          hidden: true,
+        },
+      },
+      {
         path: '/mapping-knowledge-domain',
         component: () => import('../views/mapping-knowledge-domain/index.vue'),
         meta: {
